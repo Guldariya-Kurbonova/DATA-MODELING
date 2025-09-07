@@ -35,10 +35,8 @@ Source: [Database Normalization (YouTube)](https://www.youtube.com/watch?v=QqlPX
 ## First Normal Form (1NF)
 
 **From the video:**  
-- Repeating Values: in order to get rid of that we’re going to have to move our tracks to a new table.  
-- So here we have a new table for our tracks: we put the name of the track and the album title is referencing the album table.  
-- Now in our album table we don’t have a list of tracks; instead they’re all in the track table, which references back to the album.  
-
+- Repeating Values: Eliminate repeating groups and arrays.  
+- Every attribute should contain only *atomic values* (one value, not a list).  
 **Why this matters:**  
 Without 1NF, you end up with lists or arrays in columns (e.g., multiple phone numbers in one field). That makes querying and updating data a nightmare.
 
@@ -46,20 +44,18 @@ Without 1NF, you end up with lists or arrays in columns (e.g., multiple phone nu
 
 ## Second Normal Form (2NF)
 
-**From the video:**  
 - Second normal form removes what we call functional dependencies, which are groups of columns that depend on each other rather than on the key of the table.  
 - One way to look at this is themes or sub-themes of the data.  
 - Example: tracks, track title, artist, and artist country group together separate from the album itself.  
 - Many albums contain multiple artists. So we add a primary key to the album and track tables, and we move the album artist over to the track table.  
 
 **Why this matters:**  
-If you don’t fix partial dependencies, you duplicate artist info across many rows. Updating or correcting it later becomes inconsistent and error-prone.
+If you don’t fix partial dependencies, we duplicate artist info across many rows. Updating or correcting it later becomes inconsistent and error-prone.
 
 ---
 
 ## Third Normal Form (3NF)
 
-**From the video:**  
 - To move to third normal form we have to move transient dependencies, which are more subtle.  
 - A transient dependency is where a field depends more on another column for its meaning than the table key.  
 - Example: artist country does not depend on the track; it depends on the artist itself.  
@@ -72,8 +68,7 @@ If you don’t fix partial dependencies, you duplicate artist info across many r
 ---
 
 ## Boyce–Codd Normal Form (BCNF)
-
-**From the video (in later slides):**  
+ 
 - A stricter version of 3NF.  
 - Ensures that every determinant is a candidate key.  
 - Helps resolve special cases where 3NF alone does not eliminate redundancy.  
@@ -83,41 +78,6 @@ BCNF is about handling tricky cases that slip past 3NF. It ensures cleaner relat
 
 ---
 
-## Fourth Normal Form (4NF)
-
-**From the video (informal explanation):**  
-- Removes multi-valued dependencies.  
-- If you have two or more independent multivalued facts about an entity, they must go in separate tables.  
-- Example in practice: an artist can play multiple instruments and record multiple genres. Don’t store both in the same table.  
-
-**Why this matters:**  
-Without 4NF, one row is trying to carry two independent sets of facts, leading to messy duplication.
-
----
-
-## Fifth Normal Form (5NF)
-
-**From the video:**  
-- Removes join dependencies.  
-- A table should not require being reconstructed from multiple smaller tables unless necessary.  
-- Common example: Supplier → Part → Project relationships.  
-
-**Why this matters:**  
-5NF ensures the design avoids hidden redundancies that appear only when combining multiple relationships.
-
----
-
-## Sixth Normal Form (6NF)
-
-**From the video:**  
-- Deals with temporal data (time-variant facts).  
-- Example: Employee salary history — you need to know not only the current salary but also when it was valid (StartDate, EndDate).  
-- Rarely needed in day-to-day transaction systems, but very useful in data warehouses and auditing systems.  
-
-**Why this matters:**  
-6NF preserves historical accuracy. Without it, you overwrite old facts and lose the ability to see “what was true at a given time.”
-
----
 
 ## 5. Practical Guidelines
 
