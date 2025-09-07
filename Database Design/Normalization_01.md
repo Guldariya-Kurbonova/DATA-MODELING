@@ -34,7 +34,6 @@ Source: [Database Normalization (YouTube)](https://www.youtube.com/watch?v=QqlPX
 
 ## First Normal Form (1NF)
 
-**From the video:**  
 - Repeating Values: Eliminate repeating groups and arrays.  
 - Every attribute should contain only *atomic values* (one value, not a list).  
 **Why this matters:**  
