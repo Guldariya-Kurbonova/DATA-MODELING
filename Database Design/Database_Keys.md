@@ -110,7 +110,7 @@ Compound keys are common in link/junction tables for many-to-many relationships.
 - Example: Product codes like `CLS-TRN-016` (Classic, Train set, #16).  
 - Natural key with embedded meaning in its parts.  
 - Risks:  
-  - People rely on extracting meaning from the code.  
+  - People may extract meaning from the code.  
   - Re-categorization can break the format.  
 - Better: store category/subcategory as separate columns.  
 
@@ -126,4 +126,3 @@ Intelligent keys are tempting but fragile. They tie business rules too tightly t
   - Foreign keys for relationships.  
   - Surrogates where natural keys don’t exist.  
 - Be cautious with composite and intelligent keys — they add complexity and future risk.  
-"""
