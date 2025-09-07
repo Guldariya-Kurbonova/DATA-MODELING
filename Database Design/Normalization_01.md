@@ -1,6 +1,6 @@
 # Database Normalization — Notes from Video
 
-Source: [Database Normalization (YouTube)](https://www.youtube.com/watch?v=ZBgXb66Ckz0&t=8s)
+Source: [Database Normalization (YouTube)](https://www.youtube.com/watch?v=QqlPXKxN6LQ)
 
 ---
 
