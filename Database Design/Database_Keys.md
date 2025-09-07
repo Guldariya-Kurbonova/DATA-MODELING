@@ -1,6 +1,6 @@
 # Database Keys — Notes from Video
 
-Source: [Types of Keys in Relational Databases (Decomplexify)](https://www.youtube.com/watch?v=8wUUMOKAK-c)  
+Source: [Types of Keys in Relational Databases](https://www.youtube.com/watch?v=8wUUMOKAK-c)  
 *These notes follow the explanations in the video, with added reflections for practice.*
 
 ---
