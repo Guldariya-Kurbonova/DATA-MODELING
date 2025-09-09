@@ -1,5 +1,6 @@
 # Database Administration: Infrastructure and Physical Design
-Source: Database Normalization (YouTube)
+**Video Reference:** [Databases Architecture And Environment](https://www.youtube.com/watch?v=Z1qkC_TEoLI)  
+*These notes are based on insights from this video.*
 
 ## Key Focus Areas
 - Database architecture  
