@@ -203,3 +203,103 @@ Choosing indexes requires analyzing **user query patterns**.
 Indexing is a balance between **read performance** and **write efficiency**.  
 
 ---
+# Database Notes
+
+12. **Clustering Definition**  
+Clustering is the technique of storing related records from different tables together in the same disk area.  
+
+**Why?**  
+- Improves performance of JOIN operations.  
+- Ensures that primary key records in a main table are stored near the foreign key records in related tables.  
+
+**Example:**  
+In a university database, if `Students` table and `Enrollments` table are clustered, then a student’s record and their course enrollments will be stored close together on disk.  
+This reduces disk I/O during queries like:  
+```sql
+SELECT * 
+FROM Students 
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID;
+```
+
+---
+
+13. **Indexes**  
+Indexes are data structures that improve the speed of retrieving rows from a database table.  
+
+**Types of Indexes:**  
+- **Primary Index (Unique Index):** Automatically created on a primary key. Guarantees uniqueness of rows.  
+  *Example:* `PatientID` in a hospital DB.  
+- **Secondary Index (Non-Unique Index):** Created on non-primary fields. Values can repeat.  
+  *Example:* Index on `Gender` or `ZipCode`.  
+
+**Real-life usage:**  
+- Search engines use indexes to quickly return results instead of scanning all web pages.  
+- In e-commerce, an index on `ProductCategory` speeds up filtering.  
+
+---
+
+14. **When to Use Indexes**  
+The lecturer suggested 12 rules/questions to decide if an index is needed:  
+
+- Large Tables → Yes. Large tables need indexes to avoid slow full table scans.  
+- Primary Keys → Always Indexed. Usually automatic in DBMS.  
+- Search Fields (`WHERE` clause fields) → Index.  
+  *Example:* `WHERE CustomerName = 'Alice'`.  
+- `ORDER BY` or `GROUP BY` Fields → Index. Improves sorting & grouping.  
+  *Example:* Ordering invoices by `InvoiceDate`.  
+- High Cardinality (Many Unique Values) → Index.  
+  *Example:* Good index: `ZipCode` (thousands of values). Bad index: `Country` (maybe only 5–10 values).  
+- Avoid Indexes on Small Lookup Tables.  
+  *Example:* A table with 6 possible `PaymentStatus` values.  
+- Avoid Indexing Large Text/Blob Fields.  
+  *Example:* `ProductDescription` or `ProfilePicture`.  
+- Sequence Numbers (like `OrderID`) → Good Index. Fast access for lookups.  
+- Consider DB Limits. Some DBMS have max indexes per table.  
+- Avoid Indexes on Columns with Many NULLs. They don’t optimize well in indexes.  
+- Use a Query Optimizer. Analyze which queries consume the most resources → add indexes for those.  
+- Balance the Number of Indexes. Too many indexes slow down `INSERT`/`UPDATE`/`DELETE` operations.  
+
+---
+
+15. **Query Optimization**  
+Definition: Techniques used to make SQL queries execute faster.  
+
+**Methods:**  
+- **Parallel Query Processing:** Multiple queries run simultaneously (depends on hardware & DBMS).  
+- **Query Hints (DB-specific):** Example in Oracle → Force optimizer to use a particular index or join method.  
+
+**Example:**  
+If a sales database is slow for:  
+```sql
+SELECT * FROM Orders WHERE CustomerID = 123;
+```  
+→ Add an index on `CustomerID` to reduce scan time from minutes to milliseconds.  
+
+---
+
+16. **Repository Engine & Data Dictionary**  
+- **Repository Engine:** Stores metadata about the database itself.  
+- **Data Dictionary/System Catalog:** Holds information about tables, columns, indexes, constraints, and relationships.  
+
+**Real-life usage:**  
+- Tools like MySQL Workbench or Oracle SQL Developer use the system catalog to automatically generate ER diagrams.  
+- In Active Directory, the schema defines what attributes (e.g., username, email) are stored for each object.  
+
+---
+
+17. **Data Security in Databases**  
+**Why important?**  
+Databases hold sensitive information (personal data, financial data, etc.) → major attack target.  
+
+**Techniques:**  
+- **Views:** Restrict user access by exposing only certain columns/rows.  
+  *Example:* Doctors see only their patients’ data, not the entire hospital DB.  
+- **Integrity Controls (Constraints & Triggers):** Ensure valid data entry.  
+  *Example:* A Salary cannot be negative.  
+- **Authorization Rules:** Define who can access what (read, write, update).  
+- **Stored Procedures:** Force users to interact via predefined procedures instead of raw queries.  
+- **Encryption:**  
+  - *At rest:* Data stored securely on disk.  
+  - *In transit:* Secure connections (e.g., SSL/TLS).  
+- **Authentication Schemes:** Integration with LDAP/Active Directory → Single Sign-On.  
+- **Backups & Journaling:** Ensure availability (part of CIA triad: Confidentiality, Integrity, Availability). Journals/logs help recover after crashes.  
