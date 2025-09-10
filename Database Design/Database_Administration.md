@@ -302,4 +302,14 @@ Databases hold sensitive information (personal data, financial data, etc.) → m
   - *At rest:* Data stored securely on disk.  
   - *In transit:* Secure connections (e.g., SSL/TLS).  
 - **Authentication Schemes:** Integration with LDAP/Active Directory → Single Sign-On.  
-- **Backups & Journaling:** Ensure availability (part of CIA triad: Confidentiality, Integrity, Availability). Journals/logs help recover after crashes.  
+- **Backups & Journaling:** Ensure availability (part of CIA triad: Confidentiality, Integrity, Availability). Journals/logs help recover after crashes.
+
+**Encryption in Databases**
+
+Encryption is the process of converting readable data (plaintext) into an unreadable format (ciphertext) so that unauthorized users cannot access it without the decryption key.
+
+1. Encryption at Rest
+This protects data stored on disk — including database files, backups, and logs.
+
+2. Encryption in Transit
+This protects data as it moves across the network (between client apps, APIs, and the database).
