@@ -2,6 +2,9 @@
 **Video Reference:** [Databases Architecture And Environment](https://www.youtube.com/watch?v=Z1qkC_TEoLI)  
 *These notes are based on insights from this video.*
 
+<img width="1170" height="828" alt="image" src="https://github.com/user-attachments/assets/34037f21-5afa-402d-8fb9-ca26c9d15e19" />
+
+
 ## Key Focus Areas
 - Database architecture  
 - Data security  
